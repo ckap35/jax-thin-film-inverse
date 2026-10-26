@@ -1,0 +1,191 @@
+{
+  "model": {
+    "description": "Normal-incidence reflection from a finite coherent film",
+    "assumptions": [
+      "Real, wavelength-independent refractive indices",
+      "Incident and substrate media are semi-infinite",
+      "Thickness and vacuum wavelength are in nanometers"
+    ],
+    "indices_n0_n1_n2": [
+      1.0,
+      2.0,
+      1.5
+    ],
+    "wavelength_range_nm": [
+      400.0,
+      800.0
+    ],
+    "wavelength_count": 201,
+    "true_thickness_nm": 180.0,
+    "measurements": "synthetic",
+    "precision": "float64"
+  },
+  "reference_point": {
+    "thickness_nm": 150.0,
+    "loss": 0.004482128954032631,
+    "derivative_per_nm": -0.0002588465331896015
+  },
+  "multistart_fits": [
+    {
+      "start_nm": 50.0,
+      "thickness_nm": 32.45207988674931,
+      "loss": 0.0019735162963122476,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 7
+    },
+    {
+      "start_nm": 150.0,
+      "thickness_nm": 180.00000017797566,
+      "loss": 2.0578875820911779e-19,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 5
+    },
+    {
+      "start_nm": 350.0,
+      "thickness_nm": 335.2370216704424,
+      "loss": 0.004308887518081369,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 6
+    },
+    {
+      "start_nm": 550.0,
+      "thickness_nm": 534.038888584404,
+      "loss": 0.005837884315076858,
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 6
+    }
+  ],
+  "noisy_recovery": {
+    "start_nm": 150.0,
+    "thickness_nm": 179.92095068284974,
+    "loss": 2.4421958355330236e-05,
+    "success": true,
+    "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "iterations": 7,
+    "noise_seed": 2026,
+    "noise_standard_deviation_reflectance": 0.005,
+    "recovery_error_nm": -0.07904931715026464
+  },
+  "derivative_check": {
+    "evaluation_thickness_nm": 150.0,
+    "automatic_derivative_per_nm": -0.0002588465331896015,
+    "steps": [
+      {
+        "step_nm": 10.0,
+        "finite_difference_per_nm": -0.00025520683207053715,
+        "absolute_error": 3.6397011190643326e-06
+      },
+      {
+        "step_nm": 1.0,
+        "finite_difference_per_nm": -0.00025881224870642457,
+        "absolute_error": 3.4284483176917624e-08
+      },
+      {
+        "step_nm": 0.1,
+        "finite_difference_per_nm": -0.0002588461905606628,
+        "absolute_error": 3.42628938675843e-10
+      },
+      {
+        "step_nm": 0.001,
+        "finite_difference_per_nm": -0.00025884653315601594,
+        "absolute_error": 3.358554753751797e-14
+      },
+      {
+        "step_nm": 1e-05,
+        "finite_difference_per_nm": -0.0002588465332267059,
+        "absolute_error": 3.710443410853692e-14
+      },
+      {
+        "step_nm": 1e-07,
+        "finite_difference_per_nm": -0.00025884652060659263,
+        "absolute_error": 1.2583008853622735e-11
+      },
+      {
+        "step_nm": 1e-09,
+        "finite_difference_per_nm": -0.0002588441613826653,
+        "absolute_error": 2.3718069361820804e-09
+      },
+      {
+        "step_nm": 1e-11,
+        "finite_difference_per_nm": -0.0002589942149633373,
+        "absolute_error": 1.4768177373581173e-07
+      }
+    ]
+  },
+  "batch_agreement": {
+    "candidate_count": 601,
+    "output_shape": [
+      601
+    ],
+    "max_abs_loop_vmap": 5.204170427930421e-18,
+    "max_abs_vmap_jit": 0.0
+  },
+  "timings": {
+    "workload": "601 candidate thicknesses against one fixed 201-point spectrum",
+    "precision": "float64",
+    "synchronization": "block_until_ready",
+    "plotting_included": false,
+    "repeats": 7,
+    "methods": {
+      "Python loop": {
+        "first_call_ms": 430.0035039996146,
+        "steady_state_median_ms": 114.60137399990344,
+        "steady_state_samples_ms": [
+          103.65902899866342,
+          110.4092870009481,
+          114.60137399990344,
+          116.00250199990114,
+          125.50846899830503,
+          121.56053600119776,
+          113.39642199891387
+        ],
+        "repeats": 7
+      },
+      "vmap": {
+        "first_call_ms": 5.53094800125109,
+        "steady_state_median_ms": 6.766834001609823,
+        "steady_state_samples_ms": [
+          17.184330001327908,
+          2.660092999576591,
+          1.9113589987682644,
+          34.991849999642,
+          2.45640600041952,
+          6.818524001573678,
+          6.766834001609823
+        ],
+        "repeats": 7
+      },
+      "vmap + jit": {
+        "first_call_ms": 66.72114700268139,
+        "steady_state_median_ms": 0.9552080009598285,
+        "steady_state_samples_ms": [
+          1.3191569996706676,
+          1.185152999823913,
+          1.0993079995387234,
+          0.7202839988167398,
+          0.9552080009598285,
+          0.8868449986039195,
+          0.9378680006193463
+        ],
+        "repeats": 7
+      }
+    }
+  },
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "jax": "0.12.0.1",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "jax_backend": "cpu",
+    "devices": [
+      "cpu:0"
+    ],
+    "jax_enable_x64": true
+  }
+}
